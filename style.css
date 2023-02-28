@@ -24,7 +24,6 @@ body {
 .child-div {
     margin: 0;
     padding: 0;
-    border: solid 1px lightgray;
     background-color: white;
     box-sizing: border-box;
 }
@@ -35,4 +34,47 @@ body {
 
 #change-size {
     margin-bottom: 30px;
+}
+
+#colour-buttons {
+    display: flex;
+    width: 600px;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 10px;
+}
+
+.colour-button {
+    height: 30px;
+    width: 30px;
+    border-radius: 50px;
+    border: solid 2px black;
+}
+
+#black-button {
+    background-color: black;
+}
+
+#red-button {
+    background-color: red;
+}
+
+#orange-button {
+    background-color: orange;
+}
+
+#yellow-button {
+    background-color: yellow;
+}
+
+#green-button {
+    background-color: green;
+}
+
+#blue-button {
+    background-color: blue;
+}
+
+#extra-credit-btn {
+    margin-top: 15px;
 }

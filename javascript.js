@@ -1,5 +1,18 @@
 const container = document.getElementById('container');
 
+// set colour of pen and add event listener for change
+let chosenColour = "black";
+const coloursDiv = document.getElementById('colour-buttons');
+coloursDiv.childNodes.forEach(child => addEventListener('click', changeColour));
+
+// changes pen colour
+function changeColour(e) {
+    if(e.target.classList.contains('colour-button')) {
+        let selectionId = e.target.getAttribute('id').split("-");
+        chosenColour = selectionId[0];
+    }
+}
+
 //creates 16x16 grid
 createGrid(16);
 
@@ -14,19 +27,21 @@ function createGrid(input) {
     }
 }
 
+//clears grid
 function removeGrid() {
     while (container.firstChild) {
         container.removeChild(container.firstChild);
     }
 }
 
-//adds event listener for colour change
-container.childNodes.forEach(child => addEventListener('mouseover', changeColour));
+//adds event listener for drawing
+container.childNodes.forEach(child => addEventListener('mouseover', draw));
 
-// functionality for colour change
-function changeColour(e) {
+// functionality for drawing
+function draw(e) {
     if (e.target.classList.contains('child-div')) {
-        e.target.classList.add('hovered');
+        e.target.style.backgroundColor = chosenColour;
+        console.log(chosenColour);
     };
 };
 
@@ -40,5 +55,6 @@ function changeSize() {
     if (number > 0 && number <= 100) {
         removeGrid();
         createGrid(number);
+        chosenColour = "black";
     }
 }
