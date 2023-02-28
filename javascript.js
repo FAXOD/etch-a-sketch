@@ -7,3 +7,11 @@ for (i = 0; i < 256; i++) {
     container.appendChild(newDiv);
 }
 
+//changes square colour on hover
+container.childNodes.forEach(child => 
+    addEventListener('mouseover', (e) => {
+        if (e.target.classList.contains('child-div')) {
+            e.target.classList.add('hovered')
+        }
+    }
+));
