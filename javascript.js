@@ -1,4 +1,5 @@
 const container = document.getElementById('container');
+let rainbowMode = false;
 
 // set colour of pen and add event listener for change
 let chosenColour = "black";
@@ -10,6 +11,7 @@ function changeColour(e) {
     if(e.target.classList.contains('colour-button')) {
         let selectionId = e.target.getAttribute('id').split("-");
         chosenColour = selectionId[0];
+        rainbowMode = false;
     }
 }
 
@@ -40,8 +42,13 @@ container.childNodes.forEach(child => addEventListener('mouseover', draw));
 // functionality for drawing
 function draw(e) {
     if (e.target.classList.contains('child-div')) {
-        e.target.style.backgroundColor = chosenColour;
-        console.log(chosenColour);
+        if (rainbowMode) {
+            e.target.style.backgroundColor = chosenColour;
+            randomColour();
+            rainbowMode = true;
+        } else {
+            e.target.style.backgroundColor = chosenColour;
+        }
     };
 };
 
@@ -56,5 +63,29 @@ function changeSize() {
         removeGrid();
         createGrid(number);
         chosenColour = "black";
+        rainbowMode = false;
     }
+}
+
+//assigns a random RGB colour to the pen
+function randomColour() {
+    const r = Math.floor(Math.random() * 255);
+    const g = Math.floor(Math.random() * 255);
+    const b = Math.floor(Math.random() * 255);
+
+    chosenColour = `rgb(${r}, ${g}, ${b})`;
+    rainbowMode = false;
+}
+
+// adds event listener to random colour button
+const randomBtn = document.getElementById('random-colour-btn');
+randomBtn.addEventListener('click', randomColour);
+
+//adds event listener for rainbow button
+const rainbowBtn = document.getElementById('rainbow-btn');
+rainbowBtn.addEventListener('click', rainbow);
+
+//chooses a random colour each square
+function rainbow() {
+    rainbowMode = true;
 }
